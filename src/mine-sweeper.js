@@ -23,7 +23,94 @@ const { NotImplementedError } = require('../extensions/index.js');
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
+function minesweeper(matrix) {
+  let array = [];
+  matrix.forEach((element, index) => {
+    array.push([]);
+  });
+  matrix.forEach((element, index) => {
+    element.forEach((element1, index1) => {
+      if (element1) {
+        array[index][index1] = 1
+      } else {
+        let i = 0;
+        if (index == 0) {
+          if (index1 == 0) {
+            if (matrix[0][1] == true) { i++ };
+            if (matrix[1][0] == true) { i++ };
+            if (matrix[1][1] == true) { i++ };
+            array[index][index1] = i;
+          }
+          if (index1 != 0 && index1 != element.length - 1) {
+            if (matrix[0][index1 - 1] == true) { i++ };
+            if (matrix[0][index1 + 1] == true) { i++ };
+            if (matrix[1][index1 - 1] == true) { i++ };
+            if (matrix[1][index1] == true) { i++ };
+            if (matrix[1][index1 + 1] == true) { i++ };
+            array[index][index1] = i;
+          }
+          if (index1 == element.length - 1) {
+            if (matrix[0][1] == true) { i++ };
+            if (matrix[1][0] == true) { i++ };
+            if (matrix[1][1] == true) { i++ };
+            array[index][index1] = i;
+          }
+        }
+        if (index != 0 && index != matrix.length - 1) {
+          if (index1 == 0) {
+            if (matrix[index][index1 + 1] == true) { i++ };
+            if (matrix[index - 1][index1] == true) { i++ };
+            if (matrix[index + 1][index1] == true) { i++ };
+            if (matrix[index - 1][index1 + 1] == true) { i++ };
+            if (matrix[index + 1][index1 + 1] == true) { i++ };
+            array[index][index1] = i;
+          }
+          if (index1 != 0 && index1 != element.length - 1) {
+            if (matrix[index][index1 + 1] == true) { i++ };
+            if (matrix[index - 1][index1] == true) { i++ };
+            if (matrix[index + 1][index1] == true) { i++ };
+            if (matrix[index - 1][index1 + 1] == true) { i++ };
+            if (matrix[index + 1][index1 + 1] == true) { i++ };
+            if (matrix[index][index1 - 1] == true) { i++ };
+            if (matrix[index - 1][index1 - 1] == true) { i++ };
+            if (matrix[index + 1][index1 - 1] == true) { i++ };
+            array[index][index1] = i;
+          }
+          if (index1 == element.length - 1) {
+            if (matrix[index - 1][index1] == true) { i++ };
+            if (matrix[index + 1][index1] == true) { i++ };
+            if (matrix[index][index1 - 1] == true) { i++ };
+            if (matrix[index - 1][index1 - 1] == true) { i++ };
+            if (matrix[index + 1][index1 - 1] == true) { i++ };
+            array[index][index1] = i;
+          }
+        }
+        if (index == matrix.length - 1) {
+          if (index1 == 0) {
+            if (matrix[index - 1][0] == true) { i++ };
+            if (matrix[index][index1 + 1] == true) { i++ };
+            if (matrix[index - 1][1] == true) { i++ };
+            array[index][index1] = i;
+          }
+          if (index1 != 0 && index1 != element.length - 1) {
+            if (matrix[index][index1 + 1] == true) { i++ };
+            if (matrix[index][index1 - 1] == true) { i++ };
+            if (matrix[index - 1][index1] == true) { i++ };
+            if (matrix[index - 1][index1 - 1] == true) { i++ };
+            if (matrix[index - 1][index1 + 1] == true) { i++ };
+            array[index][index1] = i;
+          }
+          if (index1 == element.length - 1) {
+            if (matrix[index][index1 - 1] == true) { i++ };
+            if (matrix[index - 1][index1 - 1] == true) { i++ };
+            if (matrix[index - 1][index1] == true) { i++ };
+            array[index][index1] = i;
+          }
+        }
+      }
+    });
+  });
+  return array;
   throw new NotImplementedError('Not implemented');
   // remove line with error and write your code here
 }
