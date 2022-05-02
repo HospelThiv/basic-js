@@ -15,6 +15,7 @@ const { NotImplementedError } = require('../extensions/index.js');
 class DepthCalculator {
   calculateDepth(arr) {
     throw new NotImplementedError('Not implemented');
+    // if (typeof arr, toString()[0] != "[") return 0;
     let result = 0;
     arr.forEach(element => {
       if (typeof element == "object") {
@@ -37,7 +38,7 @@ class DepthCalculator {
     }
     if (result > 1) result += 2
     if (result == 1) result = 2
-    // if (result == 0) result = 1
+    if (result == 0) result = 1
     // console.log(arr, result)
     return result;
   }
