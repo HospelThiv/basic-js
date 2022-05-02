@@ -14,7 +14,28 @@ const { NotImplementedError } = require('../extensions/index.js');
  * For 00-1B-63-84-45-E6, the output should be true.
  *
  */
-function isMAC48Address(/* n */) {
+function isMAC48Address(n) {
+  let result = true;
+  let arrayOfStrings = n.split('-');
+  // debugger
+  if (arrayOfStrings.length != 6) {
+    result = false;
+  } else {
+    arrayOfStrings.forEach(element => {
+      if (result == true) {
+        if (isNaN(parseInt(element, 16))) {
+          result = false;
+        }
+        if (parseInt(element, 16) < 0 && parseInt(element, 16) > 255) {
+          result = false;
+        }
+      }
+
+    });
+  }
+  // console.log(arrayOfStrings)
+  return result;
+  // разделить через | и посчитать каждое число сравнив с 0-255
   throw new NotImplementedError('Not implemented');
   // remove line with error and write your code here
 }
